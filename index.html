@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title || "AO3 Clone" %></title>
+  <link rel="stylesheet" href="/styles.css">
+
+  <style>
+    /* Reset suave */
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: #f6f6f6;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* Contenedor centrado */
+.container {
+  width: 900px;
+  margin: 0 auto;
+}
+
+/* Header */
+header {
+  background-color: #990000;
+  color: white;
+  padding: 15px 0;
+}
+
+.logo {
+  font-family: Georgia, serif;
+  margin: 0;
+}
+
+nav {
+  margin-top: 8px;
+}
+
+nav a {
+  color: white;
+  margin-right: 15px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Main */
+main {
+  background: white;
+  padding: 25px;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+}
+
+/* Obras */
+.work {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+}
+
+.work h2 {
+  font-family: Georgia, serif;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+.work a {
+  color: #990000;
+  text-decoration: none;
+}
+
+.work a:hover {
+  text-decoration: underline;
+}
+
+.meta {
+  font-size: 14px;
+  color: #555;
+}
+
+.tags {
+  margin-top: 5px;
+}
+
+.tag {
+  display: inline-block;
+  background: #eee;
+  padding: 3px 6px;
+  font-size: 12px;
+  margin-right: 5px;
+  border-radius: 3px;
+}
+
+/* Botones */
+button {
+  background-color: #990000;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #770000;
+}
+
+/* Footer */
+footer {
+  margin-top: 20px;
+  padding: 15px 0;
+  font-size: 12px;
+  color: #777;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 class="logo">AO3 Clone</h1>
+      <nav>
+        <a href="/">Inicio</a>
+        <a href="/works/new">Publicar</a>
+        <a href="/login">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <%- body %>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Proyecto inspirado en Archive of Our Own</p>
+    </div>
+  </footer>
+
+<h1>Obras recientes</h1>
+
+<% works.forEach(work => { %>
+  <div class="work">
+    <h2>
+      <a href="/works/<%= work._id %>"><%= work.title %></a>
+    </h2>
+
+    <div class="meta">
+      Por <strong><%= work.author %></strong>
+    </div>
+
+    <div class="tags">
+      <% work.tags.forEach(tag => { %>
+        <span class="tag"><%= tag %></span>
+      <% }) %>
+    </div>
+  </div>
+<% }) %>
+
+</body>
+</html>
